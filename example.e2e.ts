@@ -1,5 +1,5 @@
-const LoginPage = require('../pageobjects/login.page');
-const SecurePage = require('../pageobjects/secure.page');
+import LoginPage from  '/login.page';
+import SecurePage from '/secure.page';
 
 describe('My Login application', () => {
     it('should login with valid credentials', () => {
