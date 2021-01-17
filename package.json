@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test-chrome": "tsc && wdio run conf/wdio.chrome.conf.js",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix"
   },
@@ -20,6 +20,10 @@
   },
   "homepage": "https://github.com/ianoroceo/GoodRX#readme",
   "devDependencies": {
+    "@types/chai": "^4.2.11",
+    "@types/chai-string": "^1.4.2",
+    "@types/faker": "^4.1.12",
+    "@types/mocha": "^7.0.2",
     "@rpii/wdio-html-reporter": "^6.3.1",
     "@typescript-eslint/eslint-plugin": "^4.13.0",
     "@typescript-eslint/parser": "^4.13.0",

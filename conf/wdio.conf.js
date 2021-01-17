@@ -25,7 +25,7 @@ exports.config = {
 
   bail: 0,
 
-  baseUrl: process.env.TANGO_URL,
+  baseUrl: process.env.URL,
 
   waitforTimeout: 10000,
 
