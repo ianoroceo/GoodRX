@@ -6,11 +6,8 @@ const overrides = {
   capabilities: [
     {
       browserName: "chrome",
-      // Below was to avoid a Chrome dialog with error 'Failed to load extension
-      // from /private/var/blahblahblah/... Loading of unpacked extensions disabled by administrator'
       "goog:chromeOptions": {
-        useAutomationExtension: false,
-        // args: ['--disable-infobars', '--incognito', '--start-maximized'],
+        args: ["--disable-infobars", "--incognito"],
       },
     },
   ],

@@ -1,5 +1,7 @@
 // const moment = require('moment');
-const path = require("path");
+// const path = require("path");
+const { ReportAggregator, HtmlReporter } = require("@rpii/wdio-html-reporter");
+const log4j = require("log4js");
 
 const dotenv = require("dotenv");
 dotenv.config();
@@ -8,22 +10,21 @@ exports.config = {
   runner: "local",
 
   specs: ["./src/tests/**/*.js"],
-  // Patterns to exclude.
-  exclude: [
-    // 'path/to/excluded/files'
-  ],
-  suites: {},
+
+  exclude: [],
+  suites: {
+    search: ["./src/tests/Search/**/**.js"],
+    couponPrice: ["./src/tests/Search/CouponPrice/**.js"],
+  },
 
   maxInstances: 1,
 
   capabilities: [{ maxInstances: 5 }],
 
   logLevel: "debug",
-  outputDir: path.resolve(__dirname, "../logs"),
+  // outputDir: path.resolve(__dirname, "../logs"),
 
   bail: 0,
-
-  baseUrl: process.env.URL,
 
   waitforTimeout: 10000,
 
@@ -33,14 +34,70 @@ exports.config = {
 
   framework: "mocha",
 
-  reporters: ["spec", "dot"],
+  reporters: [
+    "spec",
+    "dot",
+    [
+      HtmlReporter,
+      {
+        debug: true,
+        outputDir: "./reports/html-reports/",
+        filename: "report.html",
+        reportTitle: "GoodRX Test Report",
+
+        //to show the report in a browser when done
+        showInBrowser: true,
+
+        //to turn on screenshots after every test
+        useOnAfterCommandForScreenshot: false,
+
+        //to initialize the logger
+        LOG: log4j.getLogger("default"),
+      },
+    ],
+  ],
 
   mochaOpts: {
     ui: "bdd",
     timeout: 120000,
   },
 
-  before: function (capabilities, specs, hook, context) {
+  onPrepare: function (config, capabilities) {
+    let reportAggregator = new ReportAggregator({
+      outputDir: "./reports/html-reports/",
+      filename: "master-report.html",
+      reportTitle: "GoodRX Test Master Report",
+      browserName: capabilities.browserName,
+      collapseTests: true,
+    });
+    reportAggregator.clean();
+    global.reportAggregator = reportAggregator;
+  },
+
+  onComplete: function (exitCode, config, capabilities, results) {
+    (async () => {
+      await global.reportAggregator.createReport();
+    })();
+  },
+
+  before: function () {
     browser.setWindowSize(1920, 1440);
+  },
+
+  afterTest: function (test) {
+    const path = require("path");
+    const moment = require("moment");
+
+    // if test passed, ignore, else take and save screenshot.
+    if (test.passed) {
+      return;
+    }
+    const timestamp = moment().format("YYYYMMDD-HHmmss.SSS");
+    const filepath = path.join(
+      "reports/html-reports/screenshots/",
+      timestamp + ".png"
+    );
+    browser.saveScreenshot(filepath);
+    process.emit("test:screenshot", filepath);
   },
 };

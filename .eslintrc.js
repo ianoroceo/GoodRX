@@ -27,7 +27,7 @@ module.exports = {
     "arrow-parents": [0, "as-needed"],
     "require-jsdoc": "off",
     "brace-style": [0, "allman", { allowSingleLine: true }],
-    "max-len": ["error", { code: 200 }],
+    "max-len": ["error", { code: 300 }],
     "object-curly-spacing": ["error", "always"],
     "@typescript-eslint/no-var-requires": 0,
   },

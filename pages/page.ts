@@ -1,24 +1,26 @@
-/* eslint-disable require-jsdoc */
+import * as dotenv from "dotenv";
+dotenv.config();
 
-const DEFAULT_TIMEOUT = 5000;
+import { HomePage } from "./homePage";
 
 export class Page {
-  open() {
-    browser.url(process.env.AppUrl);
-    // browser.maximizeWindow();
+  public static open() {
+    browser.url(process.env.URL);
+
+    this.waitForElementTobeVisible(HomePage.searchTextBox);
+
+    browser.addCookie({
+      name: "grx_internal_user",
+      value: "true",
+    });
   }
 
-  constructor(selector) {
-    this.selector = selector;
-  }
-
-  /**
-   * Wait for the screen to be visible
-   *
-   * @param {boolean} isShown
-   * @return {boolean}
-   */
-  waitForIsShown(isShown = true) {
-    return $(this.selector).waitForDisplayed(DEFAULT_TIMEOUT, !isShown);
+  public static waitForElementTobeVisible(
+    elementToVisible: WebdriverIO.Element
+  ) {
+    elementToVisible.waitForDisplayed({
+      timeout: 10000,
+      timeoutMsg: "Element not Displayed",
+    });
   }
 }
