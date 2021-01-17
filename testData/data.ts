@@ -1,5 +1,6 @@
 export const TestData = {
   GENERAL_MEDICINE_SEARCH: "Amoxicillin",
+  GENERAL_MEDICINE_ALTERNATE: "Generic Amoxil",
   OTC_MEDICINE_SEARCH: "Advil",
   CONTROLLED_DRUG_SEARCH: "Vicodin",
 };
@@ -24,4 +25,17 @@ export const CouponPriceDetailsData = {
 
   COUPON_BUTTON: "Get Free Coupon",
   HELP_TEXT: "Opens window to print, email or text coupon",
+};
+
+export const CouponPageData = {
+  HEADER_TITLE: "Show this free coupon to your pharmacist",
+  COUPON_TITLE: "Discount Drug Coupon",
+  PRESCRIPTION_TITLE: "Your prescription",
+  COUPON_PRICE_TITLE: "Discounted price with this coupon",
+  COUPON_PRICE_FOOTER:
+    "This is your estimated price. The pharmacy will provide exact pricing.",
+  PHARMACY_INFO_TITLE: "Pharmacist info",
+  PHARMACY_INFO_SECTION_TITLE: ["Member ID", "Group", "Bin", "PCN"],
+  CUS_SUPPORT_NUMBER: "Customer questions call: 1-855-426-4465",
+  PHARMACY_SUPPORT_NUMBER: "Pharmacist questions call: 1-855-782-3703",
 };

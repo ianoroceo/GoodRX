@@ -2,8 +2,13 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 import { expect } from "chai";
+import { CouponPage } from "../../../pages/couponPage";
 import { CouponPricePage } from "../../../pages/couponPricePage";
-import { TestData, CouponPriceDetailsData } from "../../../testData/data";
+import {
+  TestData,
+  CouponPriceDetailsData,
+  CouponPageData,
+} from "../../../testData/data";
 import { HomePage } from "../../../pages/homePage";
 import { Page } from "../../../pages/page";
 import { SearchResultPage } from "../../../pages/searchResultPage";
@@ -44,7 +49,7 @@ describe("General Medicine Coupon Price Test", () => {
 
     // Store Coupon Price in Environment Variables
     const couponPrice = CouponPricePage.getCouponPriceText();
-    const couponPriceAmount = couponPrice.substr(couponPrice.indexOf("Price "));
+    const couponPriceAmount = couponPrice.substr(couponPrice.indexOf("$") + 0);
     process.env.COUPON_PRICE = couponPriceAmount;
 
     expect(CouponPricePage.getCouponPriceDetailsPricesTabText()).to.eql(
@@ -89,5 +94,65 @@ describe("General Medicine Coupon Price Test", () => {
 
   it("Displays Coupon Page after clicking on Get Free Coupon Button", () => {
     CouponPricePage.clickCouponPriceDetailsCouponButton();
+
+    // Header Validations
+    expect(CouponPage.isPrintCouponButtonDisplayed()).to.eql(true);
+    expect(CouponPage.isEmailCouponButtonDisplayed()).to.eql(true);
+    expect(CouponPage.isTextCouponButtonDisplayed()).to.eql(true);
+    expect(CouponPage.isMailCouponLinkDisplayed()).to.eql(true);
+
+    expect(CouponPage.getHeaderTitleText()).to.eql(CouponPageData.HEADER_TITLE);
+
+    // Body Validations
+    expect(CouponPage.isCouponDetailsDisplayed()).to.eql(true);
+    expect(CouponPage.isCouponTitleImageDisplayed()).to.eql(true);
+
+    // Prescription Details
+    expect(CouponPage.getCouponTitleText()).to.eql(CouponPageData.COUPON_TITLE);
+    expect(CouponPage.getPrescriptionHeaderText()).to.eql(
+      CouponPageData.PRESCRIPTION_TITLE
+    );
+
+    const dosage = process.env.MEDICINE_DOSAGE;
+    const medDosage = dosage.substr(dosage.indexOf("of ") + 3);
+    expect(CouponPage.getPrescriptionDosageText()).to.eql(medDosage);
+    expect(CouponPage.getPrescriptionQuantityText()).to.eql(
+      process.env.DRUG_QUANTITY
+    );
+    expect(CouponPage.getCouponPriceHeaderText()).to.eql(
+      CouponPageData.COUPON_PRICE_TITLE
+    );
+    expect(CouponPage.getCouponPriceText()).to.eql(process.env.COUPON_PRICE);
+    expect(CouponPage.getCouponPharmacyText()).to.eql(
+      `at ${process.env.PHARMACY_NAME}`
+    );
+    expect(CouponPage.getCouponPriceFooterText()).to.eql(
+      CouponPageData.COUPON_PRICE_FOOTER
+    );
+
+    // Pharmacy Info
+    expect(CouponPage.getPharmacyInfoHeaderText()).to.eql(
+      CouponPageData.PHARMACY_INFO_TITLE
+    );
+    CouponPage.pharmacyInfoSectionHeader.forEach((item, idx) => {
+      expect(item.getText()).to.eql(
+        CouponPageData.PHARMACY_INFO_SECTION_TITLE[idx]
+      );
+    });
+    CouponPage.pharmacyInfoSectionContent.forEach((item, idx) => {
+      expect(item.isDisplayed()).to.eql(true);
+    });
+
+    // Coupon Footer
+    expect(CouponPage.getCustomerSupportNumberText()).to.eql(
+      CouponPageData.CUS_SUPPORT_NUMBER
+    );
+    expect(CouponPage.getPharmacySupportNumberText()).to.eql(
+      CouponPageData.PHARMACY_SUPPORT_NUMBER
+    );
+
+    // Footer Validations
+    expect(CouponPage.isCouponFaqDisplayed()).to.eql(true);
+    expect(CouponPage.isCouponReminderDisplayed()).to.eql(true);
   });
 });

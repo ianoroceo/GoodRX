@@ -18,6 +18,10 @@ export class SearchResultPage {
     return $("#uat-drug-alternatives");
   }
 
+  public static isMedicineAlternateTitleDisplayed() {
+    return this.medicineAlternateTitle.isDisplayed()
+  }
+
   private static get compareToolTip() {
     return $('[class*="tooltipContent"]');
   }

@@ -99,7 +99,27 @@ export class CouponPricePage {
   }
 
   public static clickCouponPriceDetailsCouponButton() {
+    // Get the Session id of the Parent
+    const parentGuid = browser.getWindowHandle();
+
+    // Click the Get Free Coupon Button to open new window
     this.couponPriceDetailsCouponButton.click();
+    browser.pause(5000); // Adding sleep for new tab to exist
+
+    // Get the All the session id of the browsers
+    const allGuid = browser.getWindowHandles();
+    // Print the title of the page
+    console.log(`Page title before Switching : ${browser.getTitle()}`);
+    console.log(`Total Windows : ${allGuid.length}`);
+
+    // iterate the values in the set
+    allGuid.forEach((item, idx) => {
+      if (item != parentGuid) {
+        // If it's not Parent Window GUID, switch to it
+        browser.switchToWindow(item);
+        console.log(`Page title after Switching : ${browser.getTitle()}`);
+      }
+    });
     Page.waitForElementTobeVisible(CouponPage.couponDetails);
     return this;
   }

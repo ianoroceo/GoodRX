@@ -13,7 +13,7 @@ exports.config = {
 
   exclude: [],
   suites: {
-    search: ["./src/tests/Search/**/**.js"],
+    search: ["./src/tests/Search/**/**Search.test.js"],
     couponPrice: ["./src/tests/Search/CouponPrice/**.js"],
   },
 

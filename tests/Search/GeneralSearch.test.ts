@@ -9,15 +9,26 @@ describe("General Medicine Search Test", () => {
     Page.open();
   });
 
-  it("Displays Search Result", () => {
+  it("Displays Search Result by clicking on Search Button", () => {
     HomePage.inputSearchKeyword(TestData.GENERAL_MEDICINE_SEARCH);
     HomePage.clickSearchButton();
     expect(SearchResultPage.getMedicineTitle()).to.eql(
       TestData.GENERAL_MEDICINE_SEARCH
     );
 
-    expect(SearchResultPage.getMedicineAlternateTitle()).to.eql(
-      `Generic ${TestData.GENERAL_MEDICINE_SEARCH}`
-    );
+    // Not All Medicines will have Alternate Medicine Name
+    if (SearchResultPage.isMedicineAlternateTitleDisplayed() === true) {
+      expect(SearchResultPage.getMedicineAlternateTitle()).to.eql(
+        TestData.GENERAL_MEDICINE_ALTERNATE
+      );
+    }
+  });
+
+  it.skip("Displays TypeAhead based on Keyword Search", () => {
+    // TODO: Add tests regarding typeahead
+  });
+
+  it.skip("Displays Search Result by Clicking on TypeAhead option", () => {
+    // TODO: Add tests regarding typeahead
   });
 });
