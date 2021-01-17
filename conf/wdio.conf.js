@@ -1,27 +1,25 @@
 // const moment = require('moment');
-const path = require('path');
+const path = require("path");
 
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
 dotenv.config();
 
 exports.config = {
+  runner: "local",
 
-  runner: 'local',
-
-  specs: ['./src/tests/**/*.js'],
+  specs: ["./src/tests/**/*.js"],
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
-
   ],
   suites: {},
 
   maxInstances: 1,
 
-  capabilities: [{maxInstances: 5}],
+  capabilities: [{ maxInstances: 5 }],
 
-  logLevel: 'debug',
-  outputDir: path.resolve(__dirname, '../logs'),
+  logLevel: "debug",
+  outputDir: path.resolve(__dirname, "../logs"),
 
   bail: 0,
 
@@ -33,17 +31,16 @@ exports.config = {
 
   connectionRetryCount: 3,
 
-  framework: 'mocha',
+  framework: "mocha",
 
-  reporters: ['spec', 'dot',
-  ],
+  reporters: ["spec", "dot"],
 
   mochaOpts: {
-    ui: 'bdd',
+    ui: "bdd",
     timeout: 120000,
   },
 
-  before: function(capabilities, specs, hook, context) {
+  before: function (capabilities, specs, hook, context) {
     browser.setWindowSize(1920, 1440);
   },
 };

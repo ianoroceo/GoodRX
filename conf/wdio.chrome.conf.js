@@ -1,14 +1,14 @@
 /* eslint-disable max-len */
-const defaults = require('./wdio.conf.js').config;
-const _ = require('lodash');
+const defaults = require("./wdio.conf.js").config;
+const _ = require("lodash");
 
 const overrides = {
   capabilities: [
     {
-      'browserName': 'chrome',
+      browserName: "chrome",
       // Below was to avoid a Chrome dialog with error 'Failed to load extension
       // from /private/var/blahblahblah/... Loading of unpacked extensions disabled by administrator'
-      'goog:chromeOptions': {
+      "goog:chromeOptions": {
         useAutomationExtension: false,
         // args: ['--disable-infobars', '--incognito', '--start-maximized'],
       },
@@ -20,7 +20,7 @@ const overrides = {
    * goes sh*t when Chrome browser updated to latest
    * This happens when you don't have admin access to your machine
    */
-  services: ['selenium-standalone'],
+  services: ["selenium-standalone"],
 };
 
 exports.config = _.defaultsDeep(overrides, defaults);

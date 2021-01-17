@@ -1,13 +1,24 @@
-/**
-* main page object containing all methods, selectors and functionality
-* that is shared across all page objects
-*/
-export default class Page {
-    /**
-    * Opens a sub page of the page
-    * @param path path of the sub page (e.g. /path/to/page.html)
-    */
-    open (path: string) {
-        return browser.url(`https://the-internet.herokuapp.com/${path}`)
-    }
+/* eslint-disable require-jsdoc */
+
+const DEFAULT_TIMEOUT = 5000;
+
+export class Page {
+  open() {
+    browser.url(process.env.AppUrl);
+    // browser.maximizeWindow();
+  }
+
+  constructor(selector) {
+    this.selector = selector;
+  }
+
+  /**
+   * Wait for the screen to be visible
+   *
+   * @param {boolean} isShown
+   * @return {boolean}
+   */
+  waitForIsShown(isShown = true) {
+    return $(this.selector).waitForDisplayed(DEFAULT_TIMEOUT, !isShown);
+  }
 }
