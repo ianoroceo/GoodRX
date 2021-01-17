@@ -1,5 +1,5 @@
 // const moment = require('moment');
-// const path = require("path");
+const path = require("path");
 const { ReportAggregator, HtmlReporter } = require("@rpii/wdio-html-reporter");
 const log4j = require("log4js");
 

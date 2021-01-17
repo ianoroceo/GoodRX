@@ -110,6 +110,10 @@ export class CouponPage {
     return $('[data-qa="coupon_price"]');
   }
 
+  public static isCouponPriceDisplayed() {
+    return this.couponPrice.isDisplayed();
+  }
+
   public static getCouponPriceText() {
     return this.couponPrice.getText();
   }
@@ -120,6 +124,10 @@ export class CouponPage {
 
   public static getCouponPharmacyText() {
     return this.couponPharmacy.getText();
+  }
+
+  public static get couponInstructions() {
+    return $$('[class*="couponInstructions"] > li');
   }
 
   private static get couponPriceFooter() {

@@ -40,6 +40,12 @@ export const CouponPageData = {
   COUPON_TITLE: "Discount Drug Coupon",
   PRESCRIPTION_TITLE: "Your prescription",
   COUPON_PRICE_TITLE: "Discounted price with this coupon",
+  COUPON_PRICE_TITLE_CONTROLLED: "Easy to follow instructions",
+  COUPON_INSTRUCTIONS: [
+    "Print, text, or email this discount card..",
+    "Bring discount card and your prescription to the pharmacy",
+    "Present the discount card to the pharmacist and save!!",
+  ],
   COUPON_PRICE_FOOTER:
     "This is your estimated price. The pharmacy will provide exact pricing.",
   PHARMACY_INFO_TITLE: "Pharmacist info",

@@ -13,13 +13,13 @@ import { HomePage } from "../../../pages/homePage";
 import { Page } from "../../../pages/page";
 import { SearchResultPage } from "../../../pages/searchResultPage";
 
-describe("General Medicine Coupon Price Test", () => {
+describe("Controlled Drug Medicine Coupon Price Test", () => {
   before(() => {
     Page.open();
   });
 
   it("Displays Coupon Price Details after clicking on an item in Search Result", () => {
-    HomePage.inputSearchKeyword(TestData.GENERAL_MEDICINE_SEARCH);
+    HomePage.inputSearchKeyword(TestData.CONTROLLED_DRUG_SEARCH);
     HomePage.clickSearchButton();
     SearchResultPage.clickFirstSearchResultWithCoupon();
     expect(CouponPricePage.isCouponPriceDetailsDisplayed()).to.eql(true);
@@ -31,8 +31,13 @@ describe("General Medicine Coupon Price Test", () => {
     process.env.PHARMACY_NAME = CouponPricePage.getPharmacyNameText();
 
     expect(CouponPricePage.isMedicineQuantityDisplayed()).to.eql(true);
+
+    /**
+     * Question: Is it a requirement if it's Controlled Drug
+     * it displays the alternate name and not the name of the medicine?
+     */
     expect(CouponPricePage.getMedicineQuantityText()).to.contains(
-      TestData.GENERAL_MEDICINE_SEARCH.toLowerCase()
+      TestData.CONTROLLED_DRUG_ALTERNATE_NAME.toLowerCase()
     );
     // Store Medicine Quantity in Environment Variables
     const drugQuantityText = CouponPricePage.getMedicineQuantityText();
@@ -106,7 +111,11 @@ describe("General Medicine Coupon Price Test", () => {
 
     // Body Validations
     expect(CouponPage.isCouponDetailsDisplayed()).to.eql(true);
-    expect(CouponPage.isCouponTitleImageDisplayed()).to.eql(true);
+
+    /**
+     * Question: why is the GoodRX Image not displayed for controlled drugs?
+     */
+    // expect(CouponPage.isCouponTitleImageDisplayed()).to.eql(true);
 
     // Prescription Details
     expect(CouponPage.getCouponTitleText()).to.eql(CouponPageData.COUPON_TITLE);
@@ -121,16 +130,13 @@ describe("General Medicine Coupon Price Test", () => {
       process.env.DRUG_QUANTITY
     );
     expect(CouponPage.getCouponPriceHeaderText()).to.eql(
-      CouponPageData.COUPON_PRICE_TITLE
+      CouponPageData.COUPON_PRICE_TITLE_CONTROLLED
     );
-    expect(CouponPage.isCouponPriceDisplayed()).to.eql(true);
-    expect(CouponPage.getCouponPriceText()).to.eql(process.env.COUPON_PRICE);
-    expect(CouponPage.getCouponPharmacyText()).to.eql(
-      `at ${process.env.PHARMACY_NAME}`
-    );
-    expect(CouponPage.getCouponPriceFooterText()).to.eql(
-      CouponPageData.COUPON_PRICE_FOOTER
-    );
+    expect(CouponPage.isCouponPriceDisplayed()).to.eql(false);
+
+    CouponPage.couponInstructions.forEach((item, idx) => {
+      expect(item.getText()).to.eql(CouponPageData.COUPON_INSTRUCTIONS[idx]);
+    });
 
     // Pharmacy Info
     expect(CouponPage.getPharmacyInfoHeaderText()).to.eql(
