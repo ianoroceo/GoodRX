@@ -5,7 +5,7 @@ import { HomePage } from "../../../pages/homePage";
 import { Page } from "../../../pages/page";
 import { SearchResultPage } from "../../../pages/searchResultPage";
 
-describe("General Medicine Coupon Price Test Suite", () => {
+describe("General Medicine Coupon Price Test", () => {
   before(() => {
     Page.open();
   });

@@ -4,7 +4,7 @@ import { HomePage } from "../../pages/homePage";
 import { Page } from "../../pages/page";
 import { SearchResultPage } from "../../pages/searchResultPage";
 
-describe("General Medicine Search Test Suite", () => {
+describe("General Medicine Search Test", () => {
   before(() => {
     Page.open();
   });
