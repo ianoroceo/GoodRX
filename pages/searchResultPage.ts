@@ -19,7 +19,7 @@ export class SearchResultPage {
   }
 
   public static isMedicineAlternateTitleDisplayed() {
-    return this.medicineAlternateTitle.isDisplayed()
+    return this.medicineAlternateTitle.isDisplayed();
   }
 
   private static get compareToolTip() {

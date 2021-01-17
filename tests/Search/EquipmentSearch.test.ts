@@ -4,22 +4,22 @@ import { HomePage } from "../../pages/homePage";
 import { Page } from "../../pages/page";
 import { SearchResultPage } from "../../pages/searchResultPage";
 
-describe("General Medicine Search Test", () => {
+describe("Medicine Equipment Search Test", () => {
   before(() => {
     Page.open();
   });
 
   it("Displays Search Result by clicking on Search Button", () => {
-    HomePage.inputSearchKeyword(TestData.GENERAL_MEDICINE_SEARCH);
+    HomePage.inputSearchKeyword(TestData.MEDICINE_EQUIPMENT_SEARCH);
     HomePage.clickSearchButton();
     expect(SearchResultPage.getMedicineTitle()).to.eql(
-      TestData.GENERAL_MEDICINE_NAME
+      TestData.MEDICINE_EQUIPMENT_NAME
     );
 
     // Not All Medicines will have Alternate Medicine Name
     if (SearchResultPage.isMedicineAlternateTitleDisplayed() === true) {
       expect(SearchResultPage.getMedicineAlternateTitle()).to.eql(
-        TestData.GENERAL_MEDICINE_ALTERNATE_NAME
+        TestData.MEDICINE_EQUIPMENT_ALTERNATE_NAME
       );
     }
   });
@@ -34,7 +34,7 @@ describe("General Medicine Search Test", () => {
 });
 
 // TODO: Add negative scenarios
-describe.skip("General Medicine Search Test - Alternate Scenarios", () => {
+describe.skip("Medicine Equipment Search Test - Alternate Scenarios", () => {
   before(() => {
     Page.open();
   });

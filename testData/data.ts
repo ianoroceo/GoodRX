@@ -1,8 +1,16 @@
 export const TestData = {
   GENERAL_MEDICINE_SEARCH: "Amoxicillin",
-  GENERAL_MEDICINE_ALTERNATE: "Generic Amoxil",
+  GENERAL_MEDICINE_NAME: "Amoxicillin",
+  GENERAL_MEDICINE_ALTERNATE_NAME: "Generic Amoxil",
   OTC_MEDICINE_SEARCH: "Advil",
+  OTC_MEDICINE_NAME: "Advil, Motrin IB",
+  OTC_MEDICINE_ALTERNATE_NAME: "Ibuprofen Non-Prescription",
   CONTROLLED_DRUG_SEARCH: "Vicodin",
+  CONTROLLED_DRUG_NAME: "Vicodin, Xodol",
+  CONTROLLED_DRUG_ALTERNATE_NAME: "Hydrocodone / Acetaminophen",
+  MEDICINE_EQUIPMENT_SEARCH: "True Metrix",
+  MEDICINE_EQUIPMENT_NAME: "True Metrix",
+  MEDICINE_EQUIPMENT_ALTERNATE_NAME: "",
 };
 
 export const CouponPriceDetailsData = {
