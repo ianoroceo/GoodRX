@@ -7,7 +7,8 @@
     "test-chrome": "tsc && wdio run conf/wdio.chrome.conf.js",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
-    "createPdfReport": "node createPdf.js"
+    "createPdfReport": "node createPdf.js",
+    "emailReport": "node emailReport.js"
   },
   "repository": {
     "type": "git",
@@ -47,10 +48,12 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-promise": "^4.2.1",
+    "handlebars": "^4.7.6",
     "lodash": "^4.17.20",
     "log4j": "^1.0.0",
     "log4js": "^6.3.0",
     "moment": "^2.29.1",
+    "nodemailer": "^6.4.17",
     "prettier": "2.2.1",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3",

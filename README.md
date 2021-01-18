@@ -13,6 +13,9 @@ Web Automation Testing with Mocha and Chai, WebdriverIO V6 using Page Object Mod
 - Page Object Model
 - ESLint
 - HTML Reporter
+- Nodemailer
+
+> Note: Nodemailer was used for POC purposes
 
 ***
 
@@ -54,6 +57,22 @@ COUPON_PRICE=
 > Note: WebdriverIO Configuration is setup to be separate configuration depending on the browser you want the test to be executed or if you want to run it on a cloud service.
 
 9. To check for code error / formatting issues when you made some changes or added items in the script, run `npm run lint`. Alternatively you can run `npm run lint-fix` to automatically fix the errors.
+
+10. Reports are automatically generated after test. You can find the HTML report in `./reports`
+
+11. You can generate a PDF version of the HTML report by executing command
+
+```console
+npm run createPdfReport
+```
+
+12. You can also send the report to email by executing command
+
+```console
+npm run emailReport
+```
+
+> Note: Please update emailReport.js for the necessary connections.
 
 ### Some Extra when Running Tests
 
