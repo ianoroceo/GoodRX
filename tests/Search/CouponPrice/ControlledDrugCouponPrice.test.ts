@@ -66,10 +66,6 @@ describe("Controlled Drug Medicine Coupon Price Test", () => {
     );
 
     // Body
-    CouponPricePage.couponPriceDetailsStep.forEach((item, idx) => {
-      expect(item.getText()).to.contains(CouponPriceDetailsData.STEPS[idx]);
-    });
-
     expect(CouponPricePage.getCouponPriceDetailsBreakDownHeaderText()).to.eql(
       CouponPriceDetailsData.PRICE_BREAKDOWN[0]
     );
@@ -89,9 +85,21 @@ describe("Controlled Drug Medicine Coupon Price Test", () => {
     expect(CouponPricePage.getCouponPriceDetailsCouponButtonText()).to.eql(
       CouponPriceDetailsData.COUPON_BUTTON.toUpperCase()
     );
-    expect(CouponPricePage.getCouponPriceDetailsHelpTextText()).to.eql(
-      CouponPriceDetailsData.HELP_TEXT
-    );
+
+    if (CouponPricePage.isRestrictionsApplyDisplayed() === true) {
+      expect(CouponPricePage.getCouponPriceDetailsHelpTextText()).to.eql(
+        CouponPriceDetailsData.RESTRICTION_HELP_TEXT
+      );
+    } else {
+      expect(CouponPricePage.getCouponPriceDetailsHelpTextText()).to.eql(
+        CouponPriceDetailsData.HELP_TEXT
+      );
+
+      CouponPricePage.couponPriceDetailsStep.forEach((item, idx) => {
+        expect(item.getText()).to.contains(CouponPriceDetailsData.STEPS[idx]);
+      });
+    }
+
     // Footer
     expect(CouponPricePage.getCouponPriceDetailsFooterText()).to.eql(
       CouponPriceDetailsData.FOOTER

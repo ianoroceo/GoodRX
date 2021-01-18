@@ -19,7 +19,7 @@ describe("Medicine Equipment Coupon Price Test", () => {
   });
 
   it("Displays Coupon Price Details after clicking on an item in Search Result", () => {
-    HomePage.inputSearchKeyword(TestData.OTC_MEDICINE_SEARCH);
+    HomePage.inputSearchKeyword(TestData.MEDICINE_EQUIPMENT_SEARCH);
     HomePage.clickSearchButton();
     SearchResultPage.clickFirstSearchResultWithCoupon();
     expect(CouponPricePage.isCouponPriceDetailsDisplayed()).to.eql(true);
@@ -61,19 +61,18 @@ describe("Medicine Equipment Coupon Price Test", () => {
     );
 
     // Body
-    CouponPricePage.couponPriceDetailsStep.forEach((item, idx) => {
-      expect(item.getText()).to.contains(CouponPriceDetailsData.STEPS[idx]);
-    });
-
     expect(CouponPricePage.getCouponPriceDetailsBreakDownHeaderText()).to.eql(
       CouponPriceDetailsData.PRICE_BREAKDOWN[0]
     );
+
     expect(
       CouponPricePage.getCouponPriceDetailsEstimatedRetailPriceText()
     ).to.contain(CouponPriceDetailsData.PRICE_BREAKDOWN[1]);
+
     expect(
       CouponPricePage.getCouponPriceDetailsGoodRxCouponPriceText()
     ).to.contain(CouponPriceDetailsData.PRICE_BREAKDOWN[2]);
+
     expect(CouponPricePage.getCouponPriceDetailsYourSavingsText()).to.contain(
       CouponPriceDetailsData.PRICE_BREAKDOWN[3]
     );
@@ -84,9 +83,21 @@ describe("Medicine Equipment Coupon Price Test", () => {
     expect(CouponPricePage.getCouponPriceDetailsCouponButtonText()).to.eql(
       CouponPriceDetailsData.COUPON_BUTTON.toUpperCase()
     );
-    expect(CouponPricePage.getCouponPriceDetailsHelpTextText()).to.eql(
-      CouponPriceDetailsData.MED_EQUIP_HELP_TEXT
-    );
+
+    if (CouponPricePage.isRestrictionsApplyDisplayed() === true) {
+      expect(CouponPricePage.getCouponPriceDetailsHelpTextText()).to.eql(
+        CouponPriceDetailsData.RESTRICTION_HELP_TEXT
+      );
+    } else {
+      expect(CouponPricePage.getCouponPriceDetailsHelpTextText()).to.eql(
+        CouponPriceDetailsData.HELP_TEXT
+      );
+
+      CouponPricePage.couponPriceDetailsStep.forEach((item, idx) => {
+        expect(item.getText()).to.contains(CouponPriceDetailsData.STEPS[idx]);
+      });
+    }
+
     // Footer
     expect(CouponPricePage.getCouponPriceDetailsFooterText()).to.eql(
       CouponPriceDetailsData.FOOTER

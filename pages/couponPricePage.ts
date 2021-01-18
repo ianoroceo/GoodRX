@@ -298,4 +298,12 @@ export class CouponPricePage {
   public static getCouponPriceText() {
     return this.couponPrice.getText();
   }
+
+  private static get restrictionsApply() {
+    return $('[data-qa="txt_price_disclaimer"]');
+  }
+
+  public static isRestrictionsApplyDisplayed() {
+    return this.restrictionsApply.isDisplayed();
+  }
 }

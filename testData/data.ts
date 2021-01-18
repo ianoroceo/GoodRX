@@ -45,8 +45,10 @@ export const CouponPriceDetailsData = {
   ],
 
   COUPON_BUTTON: "Get Free Coupon",
-  HELP_TEXT: "Opens window to print, email or text coupon",
-  MED_EQUIP_HELP_TEXT:
+  HELP_TEXT:
+    "Opens window to print, email or text coupon" ||
+    "You'll need to complete a quick eligibility check for this discount.",
+  RESTRICTION_HELP_TEXT:
     "You'll need to complete a quick eligibility check for this discount.",
   OTC_MODAL_HEADER: "This coupon has Over-The-Counter restrictions.",
   OTC_MODAL_BODY_HEADER: "To use this coupon, you’ll need to:",
