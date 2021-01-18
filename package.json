@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test-chrome": "tsc && wdio run conf/wdio.chrome.conf.js",
+    "test-slack-chrome": "tsc && wdio run conf/wdio.slack.chrome.conf.js",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
     "createPdfReport": "node createPdf.js",
@@ -57,6 +58,7 @@
     "prettier": "2.2.1",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3",
-    "wdio-chromedriver-service": "^6.0.4"
+    "wdio-chromedriver-service": "^6.0.4",
+    "wdio-slack-service": "^2.1.0"
   }
 }

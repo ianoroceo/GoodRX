@@ -14,6 +14,7 @@ Web Automation Testing with Mocha and Chai, WebdriverIO V6 using Page Object Mod
 - ESLint
 - HTML Reporter
 - Nodemailer
+- WebdriverIO Slack Service
 
 > Note: Nodemailer was used for POC purposes
 
@@ -44,6 +45,8 @@ PHARMACY_NAME=
 DRUG_QUANTITY=
 MEDICINE_DOSAGE=
 COUPON_PRICE=
+
+SLACK_WEBHOOK_URL=
 ```
 
 6. Install node packages by executing command `npm i`
@@ -53,8 +56,10 @@ COUPON_PRICE=
 | NPM Script  | Description       |
 |-------------|-------------------|
 | `npm run test-chrome` | Runs all of the tests on your Machine in Chrome |
+| `npm run test-slack-chrome` | Runs all of the tests on your Machine in Chrome and notifies failure in Slack |
 
-> Note: WebdriverIO Configuration is setup to be separate configuration depending on the browser you want the test to be executed or if you want to run it on a cloud service.
+> Note: WebdriverIO Configuration is setup to be separate configuration depending on the browser you want the test to be executed or if you want to run it on a cloud service. If you want to run your test and have a slack notification, please make sure you have the Webhook Url in your .env as stated in item #5.
+
 
 9. To check for code error / formatting issues when you made some changes or added items in the script, run `npm run lint`. Alternatively you can run `npm run lint-fix` to automatically fix the errors.
 
