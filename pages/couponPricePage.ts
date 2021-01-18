@@ -62,6 +62,42 @@ export class CouponPricePage {
     return $('[data-qa="header_price_in_expanded_price_row"]');
   }
 
+  private static get otcModal() {
+    return $("#modal-OTCModal > div");
+  }
+
+  public static isOtcModalDislayed() {
+    return this.otcModal.isDisplayed();
+  }
+
+  private static get otcModalHeader() {
+    return $('#modal-OTCModal [class*="modalHeader"]');
+  }
+
+  public static getOtcModalHeaderText() {
+    return this.otcModalHeader.getText();
+  }
+
+  private static get otcModalBodyHeader() {
+    return $('[class*="bodyContainer"] > h3');
+  }
+
+  public static getOtcModalBodyHeaderText() {
+    return this.otcModalBodyHeader.getText();
+  }
+
+  public static get otcModalStepsHeader() {
+    return $$('[class*="bodyContainer"] li > h4');
+  }
+
+  public static get otcModalStepsDescription() {
+    return $$('[class*="bodyContainer"] li > p');
+  }
+
+  public static get otcModalFooter() {
+    return $$('[class*="footerContent"]');
+  }
+
   public static isCouponPriceDetailsDisplayed() {
     return this.couponPriceDetails.isDisplayed();
   }
@@ -123,6 +159,42 @@ export class CouponPricePage {
     Page.waitForElementTobeVisible(CouponPage.couponDetails);
     return this;
   }
+
+  public static clickGetFreeCouponButtonForOTC() {
+    this.couponPriceDetailsCouponButton.click();
+    Page.waitForElementTobeVisible(this.otcModal);
+  }
+
+  private static get otcModalFreeCouponButton() {
+    return $('[class*="buttonContainer"]');
+  }
+
+  public static clickGetFreeCouponButtonInOtcModal() {
+    // Get the Session id of the Parent
+    const parentGuid = browser.getWindowHandle();
+
+    // Click the Get Free Coupon Button to open new window
+    this.otcModalFreeCouponButton.click();
+    browser.pause(5000); // Adding sleep for new tab to exist
+
+    // Get the All the session id of the browsers
+    const allGuid = browser.getWindowHandles();
+    // Print the title of the page
+    console.log(`Page title before Switching : ${browser.getTitle()}`);
+    console.log(`Total Windows : ${allGuid.length}`);
+
+    // iterate the values in the set
+    allGuid.forEach((item, idx) => {
+      if (item != parentGuid) {
+        // If it's not Parent Window GUID, switch to it
+        browser.switchToWindow(item);
+        console.log(`Page title after Switching : ${browser.getTitle()}`);
+      }
+    });
+    Page.waitForElementTobeVisible(CouponPage.couponDetails);
+    return this;
+  }
+
 
   public static isCouponPriceDetailsPrintOutImageDisplayed() {
     return this.couponPriceDetailsPrintOutImage.isDisplayed();

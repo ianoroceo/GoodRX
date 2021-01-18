@@ -33,6 +33,20 @@ export const CouponPriceDetailsData = {
 
   COUPON_BUTTON: "Get Free Coupon",
   HELP_TEXT: "Opens window to print, email or text coupon",
+  OTC_MODAL_HEADER: "This coupon has Over-The-Counter restrictions.",
+  OTC_MODAL_BODY_HEADER: "To use this coupon, you’ll need to:",
+  OTC_MODAL_BODY_STEPS_HEADER: [
+    "Get a doctor’s prescription.",
+    "Present your GoodRx coupon at the pharmacy counter, not the cash register.",
+  ],
+  OTC_MODAL_BODY_STEPS_DESC: [
+    "Though you do not need a prescription to buy this product, you will need a doctor’s prescription to receive the GoodRx discount.",
+    "The pharmacist will take care of everything and apply the coupon.",
+  ],
+  OTC_MODAL_FOOTER: [
+    "Have other questions?",
+    "Learn more about using GoodRx to save on over-the-counter products.",
+  ],
 };
 
 export const CouponPageData = {
