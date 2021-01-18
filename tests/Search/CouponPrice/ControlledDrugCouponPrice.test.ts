@@ -147,7 +147,7 @@ describe("Controlled Drug Medicine Coupon Price Test", () => {
         CouponPageData.PHARMACY_INFO_SECTION_TITLE[idx]
       );
     });
-    CouponPage.pharmacyInfoSectionContent.forEach((item, idx) => {
+    CouponPage.pharmacyInfoSectionContent.forEach((item) => {
       expect(item.isDisplayed()).to.eql(true);
     });
 

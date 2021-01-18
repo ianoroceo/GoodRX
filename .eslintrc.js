@@ -30,5 +30,6 @@ module.exports = {
     "max-len": ["error", { code: 300 }],
     "object-curly-spacing": ["error", "always"],
     "@typescript-eslint/no-var-requires": 0,
+    "@typescript-eslint/explicit-module-boundary-types": "off",
   },
 };

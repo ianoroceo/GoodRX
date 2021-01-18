@@ -1,8 +1,6 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 
-import { Page } from "./page";
-
 export class CouponPage {
   // Header
   private static get printCouponButton() {

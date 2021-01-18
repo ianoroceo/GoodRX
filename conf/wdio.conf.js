@@ -22,7 +22,7 @@ exports.config = {
   capabilities: [{ maxInstances: 5 }],
 
   logLevel: "debug",
-  // outputDir: path.resolve(__dirname, "../logs"),
+  outputDir: path.resolve(__dirname, "../logs"),
 
   bail: 0,
 
@@ -62,7 +62,7 @@ exports.config = {
     timeout: 120000,
   },
 
-  onPrepare: function (config, capabilities) {
+  onPrepare: function (capabilities) {
     let reportAggregator = new ReportAggregator({
       outputDir: "./reports/html-reports/",
       filename: "master-report.html",
@@ -74,7 +74,7 @@ exports.config = {
     global.reportAggregator = reportAggregator;
   },
 
-  onComplete: function (exitCode, config, capabilities, results) {
+  onComplete: function () {
     (async () => {
       await global.reportAggregator.createReport();
     })();
