@@ -149,7 +149,7 @@ export class CouponPricePage {
     console.log(`Total Windows : ${allGuid.length}`);
 
     // iterate the values in the set
-    allGuid.forEach((item, idx) => {
+    allGuid.forEach((item) => {
       if (item != parentGuid) {
         // If it's not Parent Window GUID, switch to it
         browser.switchToWindow(item);
@@ -184,7 +184,7 @@ export class CouponPricePage {
     console.log(`Total Windows : ${allGuid.length}`);
 
     // iterate the values in the set
-    allGuid.forEach((item, idx) => {
+    allGuid.forEach((item) => {
       if (item != parentGuid) {
         // If it's not Parent Window GUID, switch to it
         browser.switchToWindow(item);
@@ -194,7 +194,6 @@ export class CouponPricePage {
     Page.waitForElementTobeVisible(CouponPage.couponDetails);
     return this;
   }
-
 
   public static isCouponPriceDetailsPrintOutImageDisplayed() {
     return this.couponPriceDetailsPrintOutImage.isDisplayed();
