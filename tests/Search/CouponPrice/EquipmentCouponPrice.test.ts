@@ -13,7 +13,7 @@ import { HomePage } from "../../../pages/homePage";
 import { Page } from "../../../pages/page";
 import { SearchResultPage } from "../../../pages/searchResultPage";
 
-describe("OTC Medicine Coupon Price Test", () => {
+describe("Medicine Equipment Coupon Price Test", () => {
   before(() => {
     Page.open();
   });
@@ -32,7 +32,7 @@ describe("OTC Medicine Coupon Price Test", () => {
 
     expect(CouponPricePage.isMedicineQuantityDisplayed()).to.eql(true);
     expect(CouponPricePage.getMedicineQuantityText()).to.contains(
-      TestData.OTC_MEDICINE_ALTERNATE_NAME.toLowerCase()
+      TestData.MEDICINE_EQUIPMENT_NAME
     );
     // Store Medicine Quantity in Environment Variables
     const drugQuantityText = CouponPricePage.getMedicineQuantityText();
@@ -85,7 +85,7 @@ describe("OTC Medicine Coupon Price Test", () => {
       CouponPriceDetailsData.COUPON_BUTTON.toUpperCase()
     );
     expect(CouponPricePage.getCouponPriceDetailsHelpTextText()).to.eql(
-      CouponPriceDetailsData.HELP_TEXT
+      CouponPriceDetailsData.MED_EQUIP_HELP_TEXT
     );
     // Footer
     expect(CouponPricePage.getCouponPriceDetailsFooterText()).to.eql(
@@ -93,37 +93,38 @@ describe("OTC Medicine Coupon Price Test", () => {
     );
   });
 
-  it("Displays OTC Coupon Modal after clicking on Get Free Coupon Button", () => {
+  it("Displays Medicine Equipment Coupon Modal after clicking on Get Free Coupon Button", () => {
     CouponPricePage.clickGetFreeCouponButtonWithModal();
 
     expect(CouponPricePage.getCouponPriceModalHeaderText()).to.eql(
-      CouponPriceDetailsData.OTC_MODAL_HEADER
-    );
-    expect(CouponPricePage.getCouponPriceModalBodyHeaderText()).to.eql(
-      CouponPriceDetailsData.OTC_MODAL_BODY_HEADER
+      CouponPriceDetailsData.MEDICINE_EQUIPMENT_MODAL_HEADER
     );
 
-    CouponPricePage.couponModalStepsHeader.forEach((item, idx) => {
+    expect(CouponPricePage.getCouponPriceModalDisclaimerTextHeader()).to.eql(
+      CouponPriceDetailsData.MEDICINE_EQUIPMENT_MODAL_BODY_HEADER
+    );
+
+    expect(CouponPricePage.getCouponPriceModalDisclaimerDescText()).to.eql(
+      CouponPriceDetailsData.MEDICINE_EQUIPMENT_MODAL_BODY_DESC
+    );
+
+    expect(
+      CouponPricePage.getCouponPriceModalDisclaimerDescFooterText()
+    ).to.eql(CouponPriceDetailsData.MEDICINE_EQUIPMENT_MODAL_BODY_FOOTER);
+
+    CouponPricePage.couponPriceModalDisclaimerSteps.forEach((item, idx) => {
       expect(item.getText()).to.eql(
         CouponPriceDetailsData.OTC_MODAL_BODY_STEPS_HEADER[idx]
       );
     });
 
-    CouponPricePage.couponModalStepsDescription.forEach((item, idx) => {
-      expect(item.getText()).to.eql(
-        CouponPriceDetailsData.OTC_MODAL_BODY_STEPS_DESC[idx]
-      );
-    });
-
-    CouponPricePage.couponModalFooter.forEach((item, idx) => {
-      expect(item.getText()).to.eql(
-        CouponPriceDetailsData.OTC_MODAL_FOOTER[idx]
-      );
-    });
+    expect(CouponPricePage.getCouponPriceModalDisclaimerFooterText()).to.eql(
+      CouponPriceDetailsData.MEDICINE_EQUIPMENT_MODAL_FOOTER
+    );
   });
 
-  it("Displays Coupon Page after clicking on Get Free Coupon Button in OTC Modal", () => {
-    CouponPricePage.clickGetFreeCouponButtonInOtcModal();
+  it("Displays Coupon Page after clicking on Get Free Coupon Button in Medicine Equipment Modal", () => {
+    CouponPricePage.clickCouponModalGetFreeCouponButton();
 
     // Header Validations
     expect(CouponPage.isPrintCouponButtonDisplayed()).to.eql(true);
@@ -180,6 +181,10 @@ describe("OTC Medicine Coupon Price Test", () => {
     );
     expect(CouponPage.getPharmacySupportNumberText()).to.eql(
       CouponPageData.PHARMACY_SUPPORT_NUMBER
+    );
+
+    expect(CouponPage.getPetSectionText()).to.eql(
+      CouponPageData.PET_SECTION_DISCLAIMER
     );
 
     // Footer Validations

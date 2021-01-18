@@ -172,6 +172,14 @@ export class CouponPage {
     return this.pharmacySupportNumber.getText();
   }
 
+  private static get petSection() {
+    return $('[class*="petSection"]');
+  }
+
+  public static getPetSectionText() {
+    return this.petSection.getText();
+  }
+
   private static get couponFaq() {
     return $('[data-qa="coupon_faq_container"]');
   }
