@@ -6,7 +6,8 @@
   "scripts": {
     "test-chrome": "tsc && wdio run conf/wdio.chrome.conf.js",
     "lint": "eslint .",
-    "lint-fix": "eslint . --fix"
+    "lint-fix": "eslint . --fix",
+    "createPdfReport": "node createPdf.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   "homepage": "https://github.com/ianoroceo/GoodRX#readme",
   "devDependencies": {
     "@rpii/wdio-html-reporter": "^6.3.1",
+    "@rpii/wdio-html-reporter-pdf": "^6.2.3",
     "@types/chai": "^4.2.11",
     "@types/chai-string": "^1.4.2",
     "@types/faker": "^4.1.12",
